@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/style.css' %}">{% endblock css %}
+
+
+{% block title %}UPLOAD{% endblock title %}
+     {% block main%}}<div class="py-5 text-center bg-secondary text-white">
+        <h1 class="mb-4">IMAGE UPLOADER</h1>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            {{form}}
+        <button class="btn btn-danger mx-4 ">Upload</button>
+    </form>
+    </div>
+    <div class="row">
+        {%for i in ab %}
+        <div class="col-sm-4">
+            <div class="card m-2">
+                <img src="{{i.image.url}}" alt="" class="card-img-top" height="450px">
+                <div class="card-body">
+                    <p class="card-text">{{i.decription}}</p>
+                  </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{i.date_time}}</small>
+                </div>
+                <div class="py-1 text-center bg-primary text-white">
+                    <a href="{%url 'hey' i.pk%}"  class="btn btn-danger">Delete</a>
+                    <a href=""  class="btn btn-danger">Edit</a></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>{% endblock main%}
+
+
+
+
+
+
